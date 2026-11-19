@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpô Moderno</title>
+    <!-- Fonte do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Link para o seu arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE MENU INICIAL -->
+    <main id="menu-inicial" class="container">
+        <h1>Jokenpô</h1>
+        <div class="menu-opcoes">
+            <h2>Escolha o modo de jogo:</h2>
+            <button id="btn-maquina" class="btn-menu">Jogador vs. Máquina</button>
+            <button id="btn-jogador" class="btn-menu">Jogador vs. Jogador</button>
+        </div>
+    </main>
+
+    <!-- TELA DO JOGO (COMEÇA ESCONDIDA) -->
+    <main id="tela-jogo" class="container escondido">
+        
+        <div class="header-jogo">
+            <h1 class="titulo-jogo">Jokenpô</h1>
+            <button id="btn-voltar" class="btn-voltar">‹ Voltar ao Menu</button>
+        </div>
+
+        <div class="resultado-mensagem" id="resultado-mensagem">Faça sua jogada!</div>
+
+        <div class="jogo-area" id="jogo-area">
+            <div class="escolha" id="escolha-jogador1">
+                <!-- A escolha do jogador 1 aparece aqui -->
+            </div>
+            <div class="vs">
+                <img src="vs.png" alt="Versus">
+            </div>
+            <div class="escolha" id="escolha-jogador2">
+                <!-- A escolha do computador/jogador 2 aparece aqui -->
+            </div>
+        </div>
+
+        <div class="placar" id="placar">
+            <span id="nome-jogador1">Jogador 1</span>: <span id="pontos-jogador1">0</span> | 
+            <span id="nome-jogador2">Computador</span>: <span id="pontos-jogador2">0</span>
+        </div>
+
+        <div class="cartas" id="cartas">
+            <div class="carta" data-escolha="pedra">
+                <img src="pedra.jpg" alt="Pedra" />
+                <p>Pedra</p>
+            </div>
+            <div class="carta" data-escolha="papel">
+                <img src="papel.jpg" alt="Papel" />
+                <p>Papel</p>
+            </div>
+            <div class="carta" data-escolha="tesoura">
+                <img src="tesoura.jpg" alt="Tesoura" />
+                <p>Tesoura</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Link para o seu arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

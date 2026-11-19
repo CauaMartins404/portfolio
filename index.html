@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cauã Martins · Portfólio</title>
+  <meta name="description" content="Portfólio de Cauã Henrique Nascimento Martins, estudante de Desenvolvimento de Software Multiplataforma na Fatec. Python, front-end, bancos de dados e IA aplicada.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-2: #111114;
+      --surface: #16161b;
+      --line: #26262e;
+      --text: #f5f5f7;
+      --muted: #a1a1aa;
+      --purple: #8b5cf6;
+      --purple-light: #c4b5fd;
+      --radius: 18px;
+      --wrap: 1120px;
+      --font-head: "Sora", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+    p { margin: 0; }
+
+    .wrap { width: min(100% - 32px, var(--wrap)); margin-inline: auto; }
+
+    .skip {
+      position: absolute; left: 16px; top: -60px; z-index: 100;
+      background: var(--purple); color: #fff; padding: .6rem 1rem; border-radius: 10px;
+      text-decoration: none; font-weight: 600;
+    }
+    .skip:focus { top: 16px; }
+    :focus-visible { outline: 2px solid var(--purple-light); outline-offset: 3px; border-radius: 6px; }
+
+    /* ---------- Navegação ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(9, 9, 11, .78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo {
+      font-family: var(--font-head); font-weight: 800; font-size: 1.15rem;
+      text-decoration: none; letter-spacing: -0.03em;
+    }
+    .logo span { color: var(--purple); }
+    .nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+    .nav ul a {
+      text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav ul a:hover { color: var(--text); }
+
+    /* ---------- Topo (nome + foto) ---------- */
+    .hero { position: relative; padding: 96px 0 80px; isolation: isolate; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; z-index: -1;
+      width: 640px; height: 640px; right: -160px; top: -120px;
+      background: radial-gradient(circle, rgba(139, 92, 246, .28), transparent 65%);
+      filter: blur(20px);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 30% 40%, #000 10%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 30% 40%, #000 10%, transparent 70%);
+      opacity: .45;
+    }
+    .hero .wrap {
+      display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: center;
+    }
+    .tag {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-family: var(--font-mono); font-size: .8rem; color: var(--purple-light);
+      background: rgba(139, 92, 246, .1); border: 1px solid rgba(139, 92, 246, .35);
+      padding: .35rem .8rem; border-radius: 999px; margin-bottom: 1.5rem;
+    }
+    .tag .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--purple);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, .25);
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6.2vw, 4.6rem); font-weight: 800; letter-spacing: -0.045em;
+    }
+    .hero h1 .destaque {
+      display: block;
+      background: linear-gradient(100deg, #fff 0%, var(--purple-light) 45%, var(--purple) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .cargo { margin-top: 1.4rem; font-size: 1.2rem; color: var(--text); font-weight: 500; }
+    .resumo { margin-top: 1rem; color: var(--muted); max-width: 54ch; }
+    .resumo strong { color: var(--purple-light); font-weight: 600; }
+    .acoes { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.4rem; border-radius: 12px; text-decoration: none;
+      font-weight: 600; font-size: .95rem; transition: transform .2s, background .2s, border-color .2s;
+    }
+    .btn-primario { background: var(--purple); color: #fff; box-shadow: 0 10px 30px -10px rgba(139, 92, 246, .7); }
+    .btn-primario:hover { background: #7c3aed; transform: translateY(-2px); }
+    .btn-secundario { border: 1px solid var(--line); color: var(--text); background: var(--bg-2); }
+    .btn-secundario:hover { border-color: var(--purple); transform: translateY(-2px); }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+
+    .foto-moldura { position: relative; justify-self: center; width: min(100%, 380px); }
+    .foto-moldura::before {
+      content: ""; position: absolute; inset: 18px -18px -18px 18px;
+      border: 2px solid var(--purple); border-radius: 28px;
+    }
+    .foto-moldura img {
+      position: relative; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%;
+      border-radius: 28px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .8);
+    }
+    .selo {
+      position: absolute; left: -22px; bottom: 34px;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      padding: .7rem 1rem; display: flex; align-items: center; gap: .7rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, .7);
+    }
+    .selo b { font-family: var(--font-head); font-size: 1.05rem; display: block; line-height: 1.1; }
+    .selo small { color: var(--muted); font-size: .78rem; }
+    .selo .ico {
+      width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+      background: rgba(139, 92, 246, .15); color: var(--purple-light);
+    }
+    .selo .ico svg { width: 20px; height: 20px; }
+
+    /* ---------- Números ---------- */
+    .numeros { border-block: 1px solid var(--line); background: var(--bg-2); }
+    .numeros .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .numero { padding: 28px 24px; border-left: 1px solid var(--line); }
+    .numero:first-child { border-left: 0; padding-left: 0; }
+    .numero b { font-family: var(--font-head); font-size: 2rem; font-weight: 700; display: block; }
+    .numero b span { color: var(--purple); }
+    .numero small { color: var(--muted); font-size: .9rem; }
+
+    /* ---------- Seções ---------- */
+    section.bloco { padding: 104px 0; }
+    section.alt { background: var(--bg-2); border-block: 1px solid var(--line); }
+    .cabeca { margin-bottom: 48px; max-width: 680px; }
+    .rotulo {
+      font-family: var(--font-mono); font-size: .8rem; color: var(--purple);
+      text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8rem; display: block;
+    }
+    .cabeca h2 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; }
+    .cabeca p { color: var(--muted); margin-top: .9rem; }
+
+    /* Destaque IA */
+    .ia {
+      display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center;
+      padding: 36px; border-radius: var(--radius); margin-bottom: 22px;
+      background:
+        linear-gradient(135deg, rgba(139, 92, 246, .18), rgba(91, 33, 182, .05) 60%),
+        var(--surface);
+      border: 1px solid rgba(139, 92, 246, .35);
+    }
+    .ia .ico-grande {
+      width: 72px; height: 72px; border-radius: 18px; display: grid; place-items: center;
+      background: var(--purple); color: #fff; box-shadow: 0 12px 30px -8px rgba(139, 92, 246, .8);
+    }
+    .ia .ico-grande svg { width: 36px; height: 36px; }
+    .ia h3 { font-size: 1.4rem; }
+    .ia p { color: var(--muted); margin-top: .5rem; max-width: 70ch; }
+
+    /* Projetos */
+    .projetos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .projeto {
+      display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px; transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .projeto:hover {
+      transform: translateY(-6px); border-color: rgba(139, 92, 246, .6);
+      box-shadow: 0 24px 50px -20px rgba(139, 92, 246, .45);
+    }
+    .projeto .num { font-family: var(--font-mono); font-size: .8rem; color: var(--purple); }
+    .projeto h3 { font-size: 1.3rem; margin-top: .9rem; }
+    .projeto p { color: var(--muted); margin-top: .8rem; font-size: .97rem; flex: 1; }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.3rem; padding: 0; list-style: none; }
+    .chips li {
+      font-family: var(--font-mono); font-size: .74rem; color: var(--purple-light);
+      background: rgba(139, 92, 246, .1); border: 1px solid rgba(139, 92, 246, .25);
+      padding: .25rem .6rem; border-radius: 999px;
+    }
+    .links { display: flex; gap: 1.2rem; margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .links a {
+      font-size: .9rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: .35rem;
+      transition: color .2s;
+    }
+    .links a:hover { color: var(--purple-light); }
+    .links svg { width: 15px; height: 15px; }
+
+
+    /* Prévia dos projetos */
+    .previa {
+      margin: -28px -28px 22px; border-bottom: 1px solid var(--line);
+      border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; background: var(--bg-2);
+    }
+    .barra {
+      display: flex; align-items: center; gap: 6px; padding: 10px 14px;
+      background: #1c1c22; border-bottom: 1px solid var(--line);
+    }
+    .barra i { width: 9px; height: 9px; border-radius: 50%; background: #3f3f46; }
+    .barra i:first-child { background: var(--purple); }
+    .barra span {
+      margin-left: 8px; flex: 1; font-family: var(--font-mono); font-size: .7rem; color: var(--muted);
+      background: var(--bg); border-radius: 6px; padding: 3px 10px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .tela { aspect-ratio: 16 / 10; overflow: hidden; }
+    .tela img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s ease; }
+    .projeto:hover .tela img { transform: scale(1.04); }
+    .ao-vivo {
+      font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+      background: var(--purple); color: #fff; border: 0; border-radius: 8px;
+      padding: .35rem .8rem; display: inline-flex; align-items: center; gap: .4rem; transition: background .2s;
+    }
+    .ao-vivo:hover { background: #7c3aed; }
+    .ao-vivo svg { width: 14px; height: 14px; }
+    .links { align-items: center; flex-wrap: wrap; gap: .9rem 1rem; }
+    .obs { font-size: .78rem; color: var(--muted); margin-top: .6rem; }
+
+    /* Janela da prévia ao vivo */
+    dialog.janela {
+      width: min(1200px, 100% - 24px); height: min(820px, 100dvh - 24px); max-width: none; max-height: none;
+      padding: 0; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-2); color: var(--text);
+      overflow: hidden; box-shadow: 0 40px 120px -20px rgba(0, 0, 0, .9);
+    }
+    dialog.janela::backdrop { background: rgba(5, 5, 8, .75); backdrop-filter: blur(6px); }
+    .janela-topo {
+      display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 18px;
+      border-bottom: 1px solid var(--line); background: #1c1c22;
+    }
+    .janela-topo strong { font-family: var(--font-head); font-size: 1rem; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .janela-topo a { font-size: .85rem; color: var(--purple-light); text-decoration: none; font-weight: 600; white-space: nowrap; }
+    .fechar {
+      background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+      width: 36px; height: 36px; font-size: 1.3rem; line-height: 1; cursor: pointer;
+    }
+    .fechar:hover { border-color: var(--purple); }
+    .janela iframe { width: 100%; height: calc(100% - 57px); border: 0; display: block; background: #000; }
+
+    /* Habilidades */
+    .habilidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .hab { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+    .hab .ico {
+      width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(139, 92, 246, .14); color: var(--purple-light); margin-bottom: 1.1rem;
+    }
+    .hab .ico svg { width: 24px; height: 24px; }
+    .hab h3 { font-size: 1.15rem; }
+    .hab p { color: var(--muted); margin-top: .5rem; font-size: .97rem; }
+
+    /* Empresas */
+    .linha-tempo { list-style: none; margin: 0; padding: 0; position: relative; max-width: 820px; }
+    .linha-tempo::before {
+      content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+      background: linear-gradient(var(--purple), var(--line));
+    }
+    .linha-tempo li { position: relative; padding-left: 44px; padding-bottom: 40px; }
+    .linha-tempo li:last-child { padding-bottom: 0; }
+    .linha-tempo li::before {
+      content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--purple);
+    }
+    .linha-tempo li.atual::before { background: var(--purple); box-shadow: 0 0 0 6px rgba(139, 92, 246, .2); }
+    .periodo { font-family: var(--font-mono); font-size: .8rem; color: var(--purple-light); }
+    .linha-tempo h3 { font-size: 1.3rem; margin-top: .35rem; }
+    .linha-tempo .funcao { color: var(--text); font-weight: 500; margin-top: .2rem; }
+    .linha-tempo p.desc { color: var(--muted); margin-top: .5rem; }
+
+    /* Conhecimentos */
+    .conhecimentos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .grupo { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; }
+    .grupo h3 { font-size: 1rem; color: var(--muted); font-weight: 600; font-family: var(--font-body); letter-spacing: 0; }
+    .grupo ul { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: .55rem; }
+    .grupo li {
+      padding: .45rem .9rem; border-radius: 10px; font-size: .93rem; font-weight: 500;
+      background: var(--bg-2); border: 1px solid var(--line);
+    }
+    .grupo li.forte { border-color: rgba(139, 92, 246, .55); background: rgba(139, 92, 246, .12); }
+    .grupo.aprendendo li { color: var(--muted); border-style: dashed; }
+    .legenda { margin-top: 1.2rem; color: var(--muted); font-size: .88rem; display: flex; align-items: center; gap: .5rem; }
+    .legenda i {
+      width: 14px; height: 14px; border-radius: 4px; display: inline-block;
+      border: 1px solid rgba(139, 92, 246, .55); background: rgba(139, 92, 246, .12);
+    }
+
+    /* Rodapé */
+    footer { border-top: 1px solid var(--line); padding: 64px 0 40px; }
+    .contato { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .contato h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+    .contato h2 span { color: var(--purple); }
+    .assinatura {
+      margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      color: var(--muted); font-size: .88rem;
+    }
+
+    /* Animação de entrada (só com JavaScript ativo) */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .surgir { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .js .surgir.visivel { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 960px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 56px; }
+      .foto-moldura { order: -1; width: min(78%, 320px); }
+      .projetos, .habilidades { grid-template-columns: 1fr 1fr; }
+      .numeros .wrap { grid-template-columns: 1fr 1fr; }
+      .numero:nth-child(3) { border-left: 0; padding-left: 0; }
+      .numero:nth-child(n+3) { border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 680px) {
+      body { font-size: 1rem; }
+      .nav ul { display: none; }
+      .hero { padding: 56px 0 64px; }
+      .hero::before { width: 420px; height: 420px; right: -200px; }
+      .selo { left: -10px; bottom: 20px; }
+      section.bloco { padding: 72px 0; }
+      .projetos, .habilidades, .conhecimentos { grid-template-columns: 1fr; }
+      .ia { grid-template-columns: 1fr; padding: 28px; }
+      .numero { padding: 22px 16px; }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#topo" aria-label="Início">cauã<span>.</span>dev</a>
+      <nav aria-label="Seções">
+        <ul>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#experiencia">Experiência</a></li>
+          <li><a href="#conhecimentos">Conhecimentos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ===== NOME + FOTO ===== -->
+    <section class="hero" id="topo" aria-labelledby="nome">
+      <div class="wrap">
+        <div>
+          <span class="tag"><span class="dot" aria-hidden="true"></span>Fatec · DSM · 4º semestre</span>
+          <h1 id="nome">Cauã Henrique <span class="destaque">Nascimento Martins</span></h1>
+          <p class="cargo">Desenvolvedor em formação · Python, front-end e bancos de dados</p>
+          <p class="resumo">
+            Estudante de Desenvolvimento de Software Multiplataforma, turma DSM-4.
+            Crio sites e aplicações web do zero e estou me especializando em
+            <strong>Inteligência Artificial para auxílio e otimização de tarefas</strong>.
+          </p>
+          <div class="acoes">
+            <a class="btn btn-primario" href="#projetos">
+              Ver projetos
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-secundario" href="https://github.com/CauaMartins404" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="foto-moldura">
+          <img src="foto.jpg" alt="Foto de Cauã Henrique Nascimento Martins" width="720" height="911">
+          <div class="selo">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+            </span>
+            <span><b>IA aplicada</b><small>em especialização</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NÚMEROS ===== -->
+    <div class="numeros" aria-label="Resumo">
+      <div class="wrap">
+        <div class="numero"><b>15<span>m</span></b><small>de experiência na Magalu</small></div>
+        <div class="numero"><b>3<span>+</span></b><small>projetos publicados</small></div>
+        <div class="numero"><b>4º</b><small>semestre de DSM na Fatec</small></div>
+        <div class="numero"><b>IA</b><small>foco de especialização</small></div>
+      </div>
+    </div>
+
+    <!-- ===== ATIVIDADES EM DESTAQUE ===== -->
+    <section class="bloco" id="projetos" aria-labelledby="t-projetos">
+      <div class="wrap">
+        <div class="cabeca surgir">
+          <span class="rotulo">01 · Atividades em destaque</span>
+          <h2 id="t-projetos">Projetos que eu criei</h2>
+          <p>Sites e aplicações feitos por mim, publicados e funcionando.</p>
+        </div>
+
+        <div class="projetos">
+          <article class="projeto surgir">
+            <figure class="previa">
+              <div class="barra" aria-hidden="true"><i></i><i></i><i></i><span>kkona404.netlify.app</span></div>
+              <div class="tela"><img src="img/previa-kkona.jpg" alt="Tela inicial do site KKona404 com o catálogo de beats" loading="lazy" width="960" height="600"></div>
+            </figure>
+            <span class="num">/01</span>
+            <h3>KKona404 · Beats &amp; Services</h3>
+            <p>
+              Loja online de um produtor musical. Catálogo de beats com player e filtros por
+              gênero e BPM, licenças em MP3/WAV ou com stems, serviços de mixagem e
+              masterização, termos de uso e contato direto pelo WhatsApp.
+            </p>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Netlify</li></ul>
+            <div class="links">
+              <button class="ao-vivo" type="button" data-titulo="KKona404 · Beats &amp; Services" data-src="https://kkona404.netlify.app"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Ver ao vivo</button>
+              <a href="https://kkona404.netlify.app" target="_blank" rel="noopener">Abrir site
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+              <a href="https://github.com/CauaMartins404/ProdKKona404" target="_blank" rel="noopener">Código
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="projeto surgir">
+            <figure class="previa">
+              <div class="barra" aria-hidden="true"><i></i><i></i><i></i><span>deltagreen.netlify.app</span></div>
+              <div class="tela"><img src="img/previa-delta.jpg" alt="Tela de seleção de agentes do sistema Delta Green" loading="lazy" width="960" height="600"></div>
+            </figure>
+            <span class="num">/02</span>
+            <h3>Delta Green · Sistema de Agentes</h3>
+            <p>
+              Sistema privado de fichas para campanhas de RPG. Criação de personagem com rolagem
+              de dados, fichas com perícias, inventário, combate e dossiê, painel do mestre,
+              catálogo de equipamentos e acesso por chave, com dados salvos na nuvem.
+            </p>
+            <ul class="chips"><li>JavaScript</li><li>MongoDB Atlas</li><li>Netlify</li></ul>
+            <p class="obs">O botão abaixo cria uma ficha de teste na hora, que se apaga sozinha depois de 1 hora.</p>
+            <div class="links">
+              <a class="ao-vivo" href="https://deltagreen.netlify.app/?demo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Testar ficha</a>
+              <a href="https://deltagreen.netlify.app" target="_blank" rel="noopener">Abrir site
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+              <a href="https://github.com/CauaMartins404/deltagreensheet" target="_blank" rel="noopener">Código
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="projeto surgir">
+            <figure class="previa">
+              <div class="barra" aria-hidden="true"><i></i><i></i><i></i><span>jokenpo · jogável aqui</span></div>
+              <div class="tela"><img src="img/previa-jokenpo.jpg" alt="Menu inicial do jogo Jokenpô" loading="lazy" width="960" height="600"></div>
+            </figure>
+            <span class="num">/03</span>
+            <h3>Jokenpô Moderno</h3>
+            <p>
+              Pedra, papel e tesoura no navegador, com modo contra a máquina e modo
+              para dois jogadores, placar, cartas ilustradas e troca entre menu e tela de jogo.
+            </p>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <div class="links">
+              <button class="ao-vivo" type="button" data-titulo="Jokenpô Moderno" data-src="jokenpo/index.html"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Jogar aqui</button>
+              <a href="https://github.com/CauaMartins404/JokenpoHTML" target="_blank" rel="noopener">Código
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HABILIDADES ===== -->
+    <section class="bloco alt" id="habilidades" aria-labelledby="t-habilidades">
+      <div class="wrap">
+        <div class="cabeca surgir">
+          <span class="rotulo">02 · Habilidades</span>
+          <h2 id="t-habilidades">O que eu faço</h2>
+        </div>
+
+        <div class="ia surgir">
+          <span class="ico-grande" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+          </span>
+          <div>
+            <h3>Especialização em Inteligência Artificial</h3>
+            <p>
+              Estou me aprofundando no uso de IA para auxiliar e otimizar tarefas: automatizar
+              trabalhos repetitivos, acelerar o desenvolvimento de código e criar soluções
+              que economizam tempo no dia a dia.
+            </p>
+          </div>
+        </div>
+
+        <div class="habilidades">
+          <div class="hab surgir">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg>
+            </span>
+            <h3>Python</h3>
+            <p>Lógica de programação, scripts e automações para resolver problemas do dia a dia.</p>
+          </div>
+          <div class="hab surgir">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>
+            </span>
+            <h3>Front-end</h3>
+            <p>Interfaces com HTML, CSS e JavaScript, responsivas para celular e computador e publicadas na web.</p>
+          </div>
+          <div class="hab surgir">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+            </span>
+            <h3>Bancos de dados</h3>
+            <p>Consultas e modelagem em SQL e bancos não relacionais com MongoDB, incluindo o MongoDB Atlas na nuvem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EMPRESAS ===== -->
+    <section class="bloco" id="experiencia" aria-labelledby="t-experiencia">
+      <div class="wrap">
+        <div class="cabeca surgir">
+          <span class="rotulo">03 · Empresas</span>
+          <h2 id="t-experiencia">Onde eu trabalhei</h2>
+        </div>
+
+        <ol class="linha-tempo">
+          <li class="atual surgir">
+            <span class="periodo">Atual</span>
+            <h3>São Joaquim</h3>
+            <p class="funcao">Mensageiro · Hotelaria</p>
+            <p class="desc">Atendimento a hóspedes e apoio à operação do hotel, com responsabilidade, organização e trabalho em equipe.</p>
+          </li>
+          <li class="surgir">
+            <span class="periodo">15 meses</span>
+            <h3>Magazine Luiza (Magalu)</h3>
+            <p class="funcao">Jovem aprendiz · Tecnologia de segurança</p>
+            <p class="desc">Programa de aprendizagem na área de tecnologia de segurança, meu primeiro contato profissional com tecnologia.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== CONHECIMENTOS ===== -->
+    <section class="bloco alt" id="conhecimentos" aria-labelledby="t-conhecimentos">
+      <div class="wrap">
+        <div class="cabeca surgir">
+          <span class="rotulo">04 · Conhecimentos</span>
+          <h2 id="t-conhecimentos">Linguagens, frameworks e bancos de dados</h2>
+        </div>
+
+        <div class="conhecimentos">
+          <div class="grupo surgir">
+            <h3>Linguagens</h3>
+            <ul>
+              <li class="forte">Python</li>
+              <li class="forte">JavaScript</li>
+              <li class="forte">HTML</li>
+              <li class="forte">CSS</li>
+              <li class="forte">SQL</li>
+            </ul>
+          </div>
+          <div class="grupo surgir">
+            <h3>Bancos de dados</h3>
+            <ul>
+              <li class="forte">SQL (relacional)</li>
+              <li class="forte">MongoDB</li>
+              <li class="forte">MongoDB Atlas</li>
+            </ul>
+          </div>
+          <div class="grupo surgir">
+            <h3>Frameworks e ferramentas</h3>
+            <ul>
+              <li class="forte">Ferramentas de IA</li>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>Git e GitHub</li>
+              <li>Netlify</li>
+              <li>Vercel</li>
+              <li>Power BI</li>
+            </ul>
+          </div>
+          <div class="grupo aprendendo surgir">
+            <h3>Em aprendizado</h3>
+            <ul>
+              <li>Docker</li>
+              <li>Linux</li>
+              <li>Azure</li>
+              <li>GitHub Actions (CI/CD)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="legenda"><i aria-hidden="true"></i>Em roxo: o que eu domino melhor.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="contato">
+        <h2>Vamos conversar<span>?</span></h2>
+        <a class="btn btn-primario" href="https://github.com/CauaMartins404" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+          github.com/CauaMartins404
+        </a>
+      </div>
+      <div class="assinatura">
+        <span>© 2026 Cauã Henrique Nascimento Martins</span>
+        <span>Fatec · Desenvolvimento de Software Multiplataforma · DSM-4</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <dialog class="janela" id="janela" aria-labelledby="janela-titulo">
+    <div class="janela-topo">
+      <strong id="janela-titulo">Prévia</strong>
+      <a id="janela-link" href="#" target="_blank" rel="noopener">Abrir em nova aba ↗</a>
+      <button class="fechar" type="button" id="janela-fechar" aria-label="Fechar prévia">×</button>
+    </div>
+    <iframe id="janela-frame" title="Prévia do projeto" loading="lazy"></iframe>
+  </dialog>
+
+  <script>
+    // Faz os blocos aparecerem suavemente ao rolar a página
+    (function () {
+      var itens = document.querySelectorAll('.surgir');
+      if (!('IntersectionObserver' in window)) {
+        itens.forEach(function (el) { el.classList.add('visivel'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      itens.forEach(function (el) { obs.observe(el); });
+    })();
+    // Prévia ao vivo dos projetos
+    (function () {
+      var janela = document.getElementById('janela');
+      var frame = document.getElementById('janela-frame');
+      var titulo = document.getElementById('janela-titulo');
+      var link = document.getElementById('janela-link');
+      document.querySelectorAll('.ao-vivo').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var src = btn.getAttribute('data-src');
+          titulo.textContent = btn.getAttribute('data-titulo');
+          link.href = src;
+          frame.src = src;
+          if (janela.showModal) { janela.showModal(); } else { window.open(src, '_blank'); }
+        });
+      });
+      function fechar() { janela.close(); }
+      document.getElementById('janela-fechar').addEventListener('click', fechar);
+      janela.addEventListener('click', function (e) { if (e.target === janela) fechar(); });
+      janela.addEventListener('close', function () { frame.src = 'about:blank'; });
+    })();
+
+  </script>
+</body>
+</html>
